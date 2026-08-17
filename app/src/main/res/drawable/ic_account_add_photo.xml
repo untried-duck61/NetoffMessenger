@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1. Наш модифицированный аватар с вырезанным углом -->
+    <item
+        android:width="96dp"
+        android:height="96dp"
+        android:drawable="@drawable/ic_account_circle_masked" />
+
+    <!-- 2. Иконка камеры (чуть меньше размера выреза для создания зазора) -->
+    <!-- Маска в векторе имеет радиус 4.5 (на холсте 24), что пропорционально равно ~36dp -->
+    <!-- Делаем камеру размером 26dp, чтобы со всех сторон остался пустой отступ по 5dp -->
+    <item
+        android:width="26dp"
+        android:height="26dp"
+        android:gravity="bottom|end"
+        android:bottom="5dp"
+        android:right="5dp"
+        android:drawable="@drawable/ic_add_a_photo" />
+
+</layer-list>
