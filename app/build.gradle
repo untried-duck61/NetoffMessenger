@@ -2,10 +2,44 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+import java.text.SimpleDateFormat
+
+// 1. Ручные настройки (меняем только их)
+def majorVersion = 0
+def minorVersion = 1
+
+// 2. Авто-вычисление даты (Формат: ггММдд, например 260722)
+static def getBuildDate() {
+    return new SimpleDateFormat("yyMMdd").format(new Date())
+}
+
+// 3. Авто-вычисление количества коммитов из Git
+def getCommitCount() {
+    try {
+        // Запускаем команду через стандартный процесс Java/Groovy
+        def process = "git rev-list --count HEAD".execute(null, project.rootDir)
+        process.waitFor() // Ждем, пока Git посчитает коммиты
+
+        if (process.exitValue() == 0) {
+            return process.text.trim().toInteger()
+        } else {
+            // Если Git вернул ошибку (например, на Windows не настроен PATH)
+            return 1
+        }
+    } catch (Exception e) {
+        println "⚠️ GIT FETCH ERROR: ${e.message}"
+        return 1 // Твой надежный фолбек
+    }
+}
+
+// Переменные для подстановки
+def commits = getCommitCount()
+def buildDate = getBuildDate()
+
 android {
     namespace 'ru.untriedduck61.netoffmessenger'
     compileSdk {
-        version = release(36) {
+        version = release(37) {
             minorApiLevel = 1
         }
     }
@@ -13,9 +47,9 @@ android {
     defaultConfig {
         applicationId "ru.untriedduck61.netoffmessenger"
         minSdk 24
-        targetSdk 36
-        versionCode 1
-        versionName "1.0"
+        targetSdk 37
+        versionCode commits
+        versionName "${majorVersion}.${minorVersion}.${buildDate}.${commits}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -30,6 +64,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
