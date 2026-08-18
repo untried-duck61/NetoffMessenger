@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Netoff Messenger</string>
+    <string name="fragment_profile_caption">Set up your profile</string>
+    <string name="fragment_profile_profile_picture_chooser_label">Choose your profile picture</string>
+    <string name="fragment_profile_name_field_hint">Name (required)</string>
+    <string name="fragment_profile_surname_field_hint">Surname (optional)</string>
+    <string name="fragment_profile_bio_field_hint">About me</string>
+    <string name="fragment_profile_phone_number_field_hint">Phone number</string>
+    <string name="fragment_profile_netodd_id_caption">Your unique Netoff ID:</string>
+    <string name="fragment_permissions_caption">Access and security</string>
+    <string name="fragment_permissions_desc">To operate the Mesh network without the Internet, the application requires the following system permissions</string>
+    <string name="fragment_permissions_bluetooth_scan_perm_title">Search for nodes (Bluetooth)</string>
+    <string name="fragment_permissions_bluetooth_scan_perm_desc">Necessary for detecting other phones with Netoff Messenger and building Mesh chains on the air</string>
+    <string name="fragment_permissions_bluetooth_advertise_perm_title">Device visibility</string>
+    <string name="fragment_permissions_bluetooth_advertise_perm_desc">Allows your phone to broadcast its ID to the network so other users can send you messages</string>
+    <string name="fragment_permissions_location_perm_title">Access to geolocation</string>
+    <string name="fragment_permissions_location_perm_desc">Important: Your location is not tracked. On older versions of Android (below 12), searching for Bluetooth devices is technically impossible without this permission</string>
 </resources>
